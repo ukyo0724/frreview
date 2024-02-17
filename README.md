@@ -7,6 +7,89 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+<div id="top"></div>
+
+## 使用技術一覧
+
+<!-- シールド一覧 -->
+<!-- 該当するプロジェクトの中から任意のものを選ぶ-->
+<p style="display: inline">
+  <!-- フロントエンドのフレームワーク一覧 -->
+  <img src="https://img.shields.io/badge/-JavaScript-#F7DF1E.svg?logo=JavaScript&style=for-the-badge">
+   <img src="https://img.shields.io/badge/-HTML5-#E34F26.svg?logo=html5&style=for-the-badge">
+    <img src="https://img.shields.io/badge/-CSS3-#1572B6.svg?logo=css3&style=for-the-badge">
+  <!-- バックエンドのフレームワーク一覧 -->
+  <img src="https://img.shields.io/badge/-Laravel-FF2D20.svg?logo=Laravel&style=for-the-badge">
+  <!--バックエンド言語-->
+  <img src="https://img.shields.io/badge/-PHP-#777BB4.svg?logo=PHP&style=for-the-badge">
+  <!-- ミドルウェア一覧 -->
+  <img src="https://img.shields.io/badge/-MariaDB-#003545.svg?logo=maryadb&style=for-the-badge&logoColor=white">
+  <!-- インフラ一覧 -->
+  <img src="https://img.shields.io/badge/-githubactions-FFFFFF.svg?logo=github-actions&style=for-the-badge">
+  <img src="https://img.shields.io/badge/-Amazon%20aws-232F3E.svg?logo=amazon-aws&style=for-the-badge">
+ 
+</p>
+
+##目次
+
+1. [プロジェクトについて](#プロジェクトについて)
+2. [環境](#環境)
+3. [ディレクトリ構成](#ディレクトリ構成)
+4. [開発環境構築](#開発環境構築)
+5. [トラブルシューティング](#トラブルシューティング)
+
+<div align="right">
+    <a href="https://readouble.com/laravel/"><span>Laravelの詳細 »</span></a>
+</div>
+<br />
+
+## プロジェクト名
+
+###フランス旅行におけるクチコミサイト
+
+##プロジェクト概要
+<p align="left">今回は世界の移動が活発になっている中で世界で一番訪れられているフランス雨におけるクチコミサイトをユーザーベースで開発した。</p>
+
+##環境
+<tr>
+<th>言語・フレームワーク</th>
+<th>バージョン</th>
+</tr>
+<tr>
+<td>PHP</td>
+<td>8.2.9</td>
+</tr>
+<tr>
+<td>Laravel</td>
+<td>9</td>
+</tr>
+<tr>
+<td>MariaDB</td>
+<td>10.5</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>20.11.0</td>
+</tr>
+## ディレクトリ構成
+
+<!-- Treeコマンドを使ってディレクトリ構成を記載 -->
+
+tree -L 2
+
+## 開発環境構築
+
+<p>Laravelプロジェクト、そしてMariaDBの設定</p>
+
+
+.env
+MYSQL_ROOT_PASSWORD=ukyo1129
+MYSQL_DATABASE=review
+MYSQL_USER=dbuser
+
+.env設定を上記で完了
+
+##トラブルシューティング
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
