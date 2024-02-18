@@ -58,4 +58,7 @@ class Post extends Model
             return false;
         }
     }
+    public function getByCategory(int $limit_count=5){
+        return $this->posts()->with('categories')->orderBy('updated_at', 'DESC')->limit($limit_count)->get();
+    }
 }

@@ -59,6 +59,11 @@
         </div>
             <button type="button" onclick="editPost({{$post->id}})">投稿</button>
         </form>
+        <form action="/posts/image/delete/{{$post->id}}" method="post">
+                    @csrf
+                    @method("DELETE")
+                <button type="submit" name="image_delete">削除</button>
+                </form>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

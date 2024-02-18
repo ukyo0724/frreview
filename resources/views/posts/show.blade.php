@@ -41,7 +41,7 @@
                 @csrf
             <textarea class="comment-post" placeholder="コメントを入力してください" name="comment">{{old('comment.content')}}</textarea>
             <p class="title_error" style="color:red">{{$errors->first('comment')}}
-            <button type="button" onclick="addComment({{$post->id}})"></button>
+            <button type="button" onclick="addComment({{$post->id}})">コメント投稿</button>
             </form>
             @foreach($comments as $comment)
             <div class="comment-display">

@@ -15,12 +15,23 @@
         <div class="index-title">
             <h1>投稿一覧</h1>
         </div>
+        <div class="notifications">
+        @forelse(Auth::user()->notifications()->get() as $notification)
+        <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
+            <p>{{ $notification->data['date'] }}</p>
+            <p>{{ $notification->data['comment_id'] }}</p>
+            <p>{{ $notification->data['user_id'] }}</p>
+        </div>
+        @empty
+        <p>まだ通知はありません</p>
+        @endforelse
+        </div>
         <div class="container">
             <div class="posts-index">
              @foreach($posts as $post)
             <div class='post'>
+                <a class="user" href='/users/{{$post->user_id}}'>{{$post->user->name}}</a>
                 <h2 class='title'><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
-                <p class='index user'>{{$post->user->name}}</p>
                 <p class='body'>{{$post->body}}</p>
                 @foreach($post->categories as $category)
                 <a href="/categories/{{$category->id}}">{{ $category->name }}</a>

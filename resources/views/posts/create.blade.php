@@ -52,7 +52,13 @@
                 @endforeach
             </div>
             <div class="image">
-                <input type="file" name="image">
+                <label for="input">画像ファイル</label>
+                <input type="file" id='image1' name="image[]" multiple="multiple">
+                <input type="file" name="image[]" id='image2' multiple="multiple">
+                <figure id='figure' style="display:none">
+                    <figcaption>画像のプレビューファイル</figcaption>
+                    <img src="" alt="" id="figureimage" style="max-width: 100%">
+                </figure>
             </div>
         </div>
         <button type="submit" name="save_draft" class="save_draft">下書き保存</button>

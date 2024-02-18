@@ -9,6 +9,7 @@ use App\Models\Region;
 use App\Models\Comment;
 use App\Models\Image;
 use App\Models\Like;
+use App\Notifications\CommentNotification;
 use Cloudinary;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,6 @@ class PostController extends Controller
     }
     public function store(PostRequest $request, Post $post, Image $image){
         
-        $image_url=Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $input=$request['post'];
         $input_user=Auth::user()->id;
         $input +=['user_id'=>$input_user];
@@ -41,12 +41,22 @@ class PostController extends Controller
              $input +=['status'=>$input_status];
         }
         $post->fill($input)->save();
-        $image->image_url=$image_url;
-        $image->post_id=$post->id;
-        $image->save();
-        $input_categories=$request->categories_array;
-        $post->categories()->attach($input_categories);
-        return redirect("/posts/$post->id");
+        if($request->has('image')){
+            $images=$request->file('image');
+            foreach($images as $image){
+            $image_url=Cloudinary::upload($image->getRealPath())->getSecurePath();
+            $image->image_url=$image_url;
+            $image->post_id=$post->id;
+            $image->save();
+            }
+            $input_categories=$request->categories_array;
+            $post->categories()->attach($input_categories);
+            return redirect("/posts/$post->id");
+        }else{
+            $input_categories=$request->categories_array;
+            $post->categories()->attach($input_categories);
+            return redirect("/posts/$post->id");
+        }
     }
     public function edit(Post $post, Region $regions, Category $categories)
     {
@@ -60,6 +70,10 @@ class PostController extends Controller
     $post->fill($input_post)->save();
 
     return redirect('/posts/' . $post->id);
+    }
+    public function imageDelete(Post $post){
+        $post->images->image_url->delete();
+        return redirect()->route('edit', ['post'=>$post->id]);
     }
     public function delete(Post $post){
         $post->delete();
@@ -80,6 +94,79 @@ class PostController extends Controller
         session()->flash('success', 'You Unliked the Reply.');
         return redirect()->back();
     }
+    public function search(Region $regions, Category $categories){
+        return view('posts.search')->with(['regions'=>$regions->get(), 'categories'=>$categories->get()]);
+    }
+    public function read(CommentNotification $notification){
+        $notification->markAsRead();
+        return redirect($notification->data['url']);
+    }
+    
+    public function searchIndex(Request $request){
+        $posts= Post::paginate(20);
+        $search= $request->input('search');
+        $query= Post::query();
+        $category_id=$request->input('post.category');
+        $post_id=Category::find($category_id)->posts->id;
+        $input_region=$request->has('post.region');
+        $input_category=$request->has('post.category');
+        $spaceConversion = mb_convert_kana($search, 's');
+            $wordArraysearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
+        if($input_region && $input_category && $search){
+            $query->where('region_id', '=', $input_region)->where('id', '=', $post_id);
+            foreach($wordArraysearched as $value){
+                $query->where('body', 'like', '%'.$value.'%');
+            }
+            $posts=$query->paginate(20);
+            if($query){
+                return view('searchs.index')->with(['posts'=>$posts]);
+            }else{
+                session()->flash('success', '検索対象が見つかりませんでした');
+                return view('posts.search')->with(['search'=>$search]);
+            }
+             }elseif($input_category && $search){
+            $query->where('id', '=', $post_id);
+            foreach($wordArraysearched as $value){
+                $query->where('body', 'like', '%'.$value.'%');
+            }
+            $posts=$query->paginate(20);
+            if($query){
+                return view('searchs.index')->with(['posts'=>$posts]);
+            }else{
+                session->flash('success', '検索対象が見つかりませんでした');
+                return view('posts.search')->with(['search'=>$search]);
+            }
+            }elseif($input_region && $search){
+                $query->where('region_id', '=', $input_region);
+                foreach($wordArraysearched as $value){
+                $query->where('body', 'like', '%'.$value.'%');
+            }
+            $posts=$query->paginate(20);
+            if($query){
+                return view('searchs.index')->with(['posts'=>$posts]);
+            }else{
+                session->flash('success', '検索対象が見つかりませんでした');
+                return view('posts.search')->with(['search'=>$search]);
+            }
+            }else{
+            foreach($wordArraysearched as $value){
+                $query->where('body', 'like', '%'.$value.'%');
+            }
+            $posts=$query->paginate(20);
+            
+            if($query){
+                 return view('searchs.index')->with(['posts'=>$posts]);
+            }else{
+                session->flash('success', '検索対象が見つかりませんでした');
+                return view('posts.search')->with(['search'=>$search]);
+            }
+            }
+            
+      
+        
+    
+    
 
     
+}
 }

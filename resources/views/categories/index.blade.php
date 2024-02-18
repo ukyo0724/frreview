@@ -19,8 +19,8 @@
             <div class="posts-index">
              @foreach($posts as $post)
             <div class='post'>
+                <a class="user" href='/users/{{$post->user_id}}'>{{$post->user->name}}</a>
                 <h2 class='title'><a href="/posts/{{$post->id}}">{{$post->title}}</a></h2>
-                <p class='category user'>{{$post->user->name}}</p>
                 <p class='body'>{{$post->body}}</p>
                 @foreach($post->categories as $category)
                 <a href="/categories/{{$category->id}}">{{ $category->name }}</a>

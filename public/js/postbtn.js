@@ -25,3 +25,20 @@ function addComment(id){
                     document.getElementById(`form_comment_${id}`).submit();
                 }
             }
+ function main(){
+     const input = document.querySelector('#input');
+     const figure=document.querySelector('#figure');
+     const figureImage=document.querySelector('#figureImage');
+     
+     input.addEventListener('change', (event)=>{
+         const [file]=event.target.files
+         
+         if(file){
+             figureImage.setAttribute('src', URL.createObjectURL(file))
+             figure.style.display='black'
+         }else{
+             figure.style.display='none'
+         }
+         })
+     }
+ 

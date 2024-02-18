@@ -39,6 +39,10 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::delete('/posts/delete/{post}','delete')->name('delete');
     Route::post('/likes/{post}', 'like')->name('post.like');
     Route::post('/unlikes/{post}', 'unlike')->name('post.unlike');
+    Route::get('/post/search', 'search')->name('post.search');
+    Route::get('/posts/serchs/index', 'searchIndex')->name('search.index');
+    Route::post('/posts/read/{notification', 'read')->name('read');
+    Route::delete('/posts/image/delete/{post}', 'imageDelete')->name('image_delete');
 
 });
 Route::post('/comments/store/{post}', [CommentController::class, 'store'])->middleware("auth");
