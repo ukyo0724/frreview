@@ -43,17 +43,25 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/serchs/index', 'searchIndex')->name('search.index');
     Route::post('/posts/read/{notification', 'read')->name('read');
     Route::delete('/posts/image/delete/{post}', 'imageDelete')->name('image_delete');
+    Route::get('/draft', 'draft')->name('draft');
+    Route::get('/posts/draft/{post}', 'draftEdit')->name('draftedit');
+    Route::post('/posts/draft/update/{post}', 'draftUpdate')->name('draftupdate');
 
 });
-Route::post('/comments/store/{post}', [CommentController::class, 'store'])->middleware("auth");
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::post('/comments/store/{post}', 'store')->name('comment.store');
+    Route::post('/comments/likes/{comment}', 'commentLike')->name('comment.like');
+    Route::post('/comments/unlikes/{comment}', 'commentUnlike')->name('comment.unlike');
+});
+    
 
-Route::get('/regions/{region}', [RegionController::class, 'index'])->middleware("auth");
+Route::get('/regions/{region}', [RegionController::class, 'index'])->middleware("auth")->name('region');
 
-Route::get('/users/{user}', [UserController::class, 'index'])->middleware("auth");
+Route::get('/users/{user}', [UserController::class, 'index'])->middleware("auth")->name('user');
 
 Route::get('users/comment/{user}', [UserController::class, 'commentIndex'])->middleware("auth");
 
-Route::get('/categories/{categories}', [CategoryController::class, 'index'])->middleware("auth");
+Route::get('/categories/{categories}', [CategoryController::class, 'index'])->middleware("auth")->name('category');
 
 
 Route::middleware('auth')->group(function () {

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -21,7 +22,7 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
     public function getByUser(int $limit_count=5){
-        return $this->posts()->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->posts()->where('status','=',2)->where('user_id','=',Auth::user()->id)->with('user')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     public function getByComment(int $limit_count=5){
         return $this->comments()->post()->with('comment')->orderBy('updated_at', 'DESC')->paginate($limit_count);
@@ -36,6 +37,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo_path',
     ];
 
     /**

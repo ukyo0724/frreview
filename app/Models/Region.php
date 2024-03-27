@@ -13,6 +13,6 @@ class Region extends Model
         return $this->hasMany(Post::class);
     }
     public function getByRegion(int $limit_count=5){
-        return  $this->posts()->with('region')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return  $this->posts()->where('status','=',2)->with('region')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }
