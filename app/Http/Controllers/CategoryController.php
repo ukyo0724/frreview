@@ -8,7 +8,7 @@ use App\Models\Category;
 
 class CategoryController extends Controller{
     public function index(Category $categories){
-        return view('categories/index')->with(['posts'=>$categories->getByCategory(1)]);
+        return view('categories/index')->with(['posts'=>$categories->getByCategory(5)]);
     }
     
 }

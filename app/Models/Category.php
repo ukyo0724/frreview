@@ -13,6 +13,6 @@ class Category extends Model
         return $this->belongsToMany(Post::class);
     }
     public function getByCategory(int $limit_count=5){
-        return $this->posts()->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        return $this->posts()->where('status','=',2)->with('categories')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
 }

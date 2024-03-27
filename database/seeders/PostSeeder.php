@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
             'body'=>'I enjoyed France',
             'city'=>'Paris',
             'status'=>1,
+            'address'=>'千葉県松戸市岩瀬38-3',
             'created_at'=>new DateTime(),
             'updated_at'=>new DateTime(),
             ]);
