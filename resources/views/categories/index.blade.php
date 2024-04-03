@@ -33,21 +33,6 @@
                     <div class="flex-grow">{{ session('unlike') }}</div>
                 </div>
             @endif
-            <div class="notifications">
-            @forelse(Auth::user()->notifications()->get() as $notification)
-                <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
-                    <p>{{ $notification->data['date'] }}</p>
-                    <p>{{ $notification->data['comment_id'] }}</p>
-                    <p>{{ $notification->data['user_id'] }}</p>
-                    <a href="{{$notification->data['url']}}">リンク</a>
-                    <form action="{{route('read', ['notification'=> $notification->data['comment_id']])}}" method='POST'>
-                    <button type="submit" class="notification">送信</button>
-                    </form>
-                </div>
-            @empty
-                <p>まだ通知はありません</p>
-            @endforelse
-            </div>
                 <div class="posts-index lg:w-screen">
                  @foreach($posts as $post)
                     <div class="post lg:w-screen">

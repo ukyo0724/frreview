@@ -1,4 +1,3 @@
-@if(Auth::user()->image_user)
     <div class="flex mb-4" x-data="picturePreview()">
         <div class="bg-gradient-to-t w-16 h-16 rounded-full bg-center inline-block">
             <img
@@ -29,10 +28,3 @@
             </script>
         </div>
     </div>
-@else
-    <div class="flex mb-4">
-        <div class="bg-gradient-to-t w-16 h-16 rounded-full bg-center inline-block">
-            <img src="{{asset('images/paris.jpg')}}">
-        </div>
-    </div>
-@endif
