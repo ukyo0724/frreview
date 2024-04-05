@@ -33,21 +33,6 @@
                     <div class="flex-grow">{{ session('unlike') }}</div>
                 </div>
             @endif
-            <div class="notifications">
-            @forelse(Auth::user()->notifications()->get() as $notification)
-                <div class="{{ is_null($notification->read_at) ? 'un-read' : '' }}">
-                    <p>{{ $notification->data['date'] }}</p>
-                    <p>{{ $notification->data['comment_id'] }}</p>
-                    <p>{{ $notification->data['user_id'] }}</p>
-                    <a href="{{$notification->data['url']}}">リンク</a>
-                    <form action="{{route('read', ['notification'=> $notification->data['comment_id']])}}" method='POST'>
-                    <button type="submit" class="notification">送信</button>
-                    </form>
-                </div>
-            @empty
-                <p>まだ通知はありません</p>
-            @endforelse
-            </div>
                 <div class="posts-index lg:w-screen">
                  @foreach($posts as $post)
                     <div class="post lg:w-screen">
@@ -115,21 +100,21 @@
                 {{$posts->links()}}
             </div>
         @else
-        <section class="text-gray-600 body-font">
-              <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                  <svg width="500px" height="450px" fill="#4169e1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M80 32C62.3 32 48 46.3 48 64V224v96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H48v64c0 17.7 14.3 32 32 32s32-14.3 32-32V384h80c17.7 0 32-14.3 32-32s-14.3-32-32-32H112V256H256c17.7 0 32-14.3 32-32s-14.3-32-32-32H112V96H288c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
-                </div>
-                <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-                  <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">一つも投稿が行われていません。
-                  </h1>
-                  <p class="mb-8 leading-relaxed">下記のボタンから投稿ができます。フランスでの経験、知識をシェアして可能性を広げましょう！</p>
-                  <div class="flex justify-center">
-                    <button onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/posts/create'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿</button>
-                    
+            <section class="text-gray-600 body-font">
+                  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+                    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+                      <svg width="500px" height="450px" fill="#4169e1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M80 32C62.3 32 48 46.3 48 64V224v96H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H48v64c0 17.7 14.3 32 32 32s32-14.3 32-32V384h80c17.7 0 32-14.3 32-32s-14.3-32-32-32H112V256H256c17.7 0 32-14.3 32-32s-14.3-32-32-32H112V96H288c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg>
+                    </div>
+                    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+                      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">一つも投稿が行われていません。
+                      </h1>
+                      <p class="mb-8 leading-relaxed">下記のボタンから投稿ができます。フランスでの経験、知識をシェアして可能性を広げましょう！</p>
+                      <div class="flex justify-center">
+                        <button onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/posts/create'" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿</button>
+                        
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
             </section>
         @endif
     </body>

@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <button onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/'" class="flex mx-auto w-11 mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿一覧</button>
+    <button onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/'" class="flex mx-auto w-9 mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">投稿一覧</button>
   </div>
 </section>
 <x-slot name="footer"></x-slot>

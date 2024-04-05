@@ -123,11 +123,11 @@
                             <div class="flex flex-wrap justify-center gap-2">
                                 <span class="rounded-full bg-primary-50 px-3 py-1 text-sm font-semibold text-red-600">
                                     <a href="/regions/{{$post->region->id}}">{{ $post->region->name}}</a></span>
-                                <span class="rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-600">
+                                <span class="rounded-full bg-green-50 px-3 py-1 mr-5 text-sm font-semibold text-green-600">
                                     @foreach($post->categories as $category)
                                         <a  href="/categories/{{$category->id}}">{{ $category->name }}</a>
-                                        </span>
                                     @endforeach
+                                </span>
                                 <div class="like leading-relaxed text-base">
                                     @if($post->is_liked_by_auth_user())
                                         <form action="{{ route('post.unlike', ['post'=>$post->id])}}" method="POST">
@@ -189,14 +189,7 @@
                     <textarea name="comment" class="block w-full border-0 focus:border-0 focus:ring-0" rows="3" placeholder="Leave a message"></textarea>
                     <p class="mt-1 text-sm text-gray-500">100文字以内でお書きください。</p>
                     <p class="comment_error" style="color:red">{{$errors->first('comment')}}
-                    <div class="flex w-full items-center justify-between bg-white p-2">
-                        <div class="flex space-x-1">
-                            <button type="button" class="rounded p-1.5 text-secondary-400 hover:bg-primary-50 hover:text-primary-400">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 01-6.364 0M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75zm-.375 0h.008v.015h-.008V9.75zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75zm-.375 0h.008v.015h-.008V9.75z" />
-                                </svg>
-                            </button>
-                        </div>
+                    <div class="flex w-full items-center flex-row-reverse justify-between bg-white p-2">
                         <button  onclick="addComment({{$post->id}})" type="button" class="rounded border border-blue-500 bg-blue-500 px-2 py-1.5 text-center text-xs font-medium text-white shadow-sm transition-all hover:bg-blue-700 focus:ring focus:ring-blue-100">Comment</button>
                     </div>
                     </form>
@@ -205,14 +198,14 @@
             @foreach($comments as $comment)
                 <div class="flex items-start gap-2.5 items-center justify-center mt-11">
                     <img class="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1645378999013-95abebf5f3c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Jese image">
-                        <div class="flex flex-col w-4/5 itemx-center justify-center  max-w-[320px] leading-1.5 p-4 border-blue-200 bg-blue-100 rounded-e-xl rounded-es-xl dark:bg-blue-700">
-                            <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                                <span class="text-sm font-semibold text-gray-900 dark:text-white">{{$comment->user->name }}</span>
-                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{$comment->updated_at}}</span>
-                            </div>
-                                <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{$comment->content}}</p>
-                                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
-                                <div class="like leading-relaxed text-base">
+                    <div class="flex flex-col w-4/5 itemx-center justify-center  max-w-[320px] leading-1.5 p-4 border-blue-200 bg-blue-100 rounded-e-xl rounded-es-xl dark:bg-blue-700">
+                        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                            <span class="text-sm font-semibold text-gray-900 dark:text-white">{{$comment->user->name }}</span>
+                            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">{{$comment->updated_at}}</span>
+                        </div>
+                            <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">{{$comment->content}}</p>
+                            <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Delivered</span>
+                            <div class="like leading-relaxed text-base">
                                 @if($comment->is_liked_by_auth_user())
                                     <form action="{{ route('comment.unlike', ['comment'=>$comment->id])}}" method="POST">
                                     @csrf
@@ -234,44 +227,19 @@
                                     </button>
                                     </form>
                                 @endif
-                                </div>
-                        </div>
-                        <button id="dropdownMenuIconButton" data-toggle="dropdownDots" data-dropdown-placement="bottom-start" class="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600 dropdown-toggle" type="button">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
-                                <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
-                            </svg>
-                        </button>
-                        <div id="dropdownDots" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reply</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Forward</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Copy</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Report</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-                                </li>
-                            </ul>
-                        </div>
+                            </div>
+                    </div>
                 </div>
             @endforeach
-        </div>
-        <div class="paginate">
-            {{$comments->links()}}
-        </div>
-        <div class="footer mt-10 mb-64">
-            <button type="button" onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/'" class="inline-flex items-center gap-1.5 rounded-lg border border-gray-700 bg-gray-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-900 hover:bg-gray-900 focus:ring focus:ring-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300">
-                <svg width="16px" height="16px" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z"/></svg>
-                戻る
-            </button>
-        </div>
+            <div class="paginate">
+                {{$comments->links()}}
+            </div>
+            <div class="footer mt-10 mb-64">
+                <button type="button" onclick="location.href='https://b4744f82cdbd4f6ca8229f8f9f1cfd9c.vfs.cloud9.eu-north-1.amazonaws.com/'" class="inline-flex items-center gap-1.5 rounded-lg border border-gray-700 bg-gray-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-900 hover:bg-gray-900 focus:ring focus:ring-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300">
+                    <svg width="16px" height="16px" fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M459.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4L288 214.3V256v41.7L459.5 440.6zM256 352V256 128 96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160C4.2 237.5 0 246.5 0 256s4.2 18.5 11.5 24.6l192 160c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V352z"/></svg>
+                    戻る
+                </button>
+            </div>
     </body>
     <x-slot name="footer"></x-slot>
     </x-app-layout>

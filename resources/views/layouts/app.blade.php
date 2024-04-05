@@ -75,10 +75,16 @@
                             <a href="{{ route('category', ['categories' => 2]) }}" class="text-gray-600 hover:text-gray-800">歴史</a>
                           </li>
                           <li>
-                            <a class="text-gray-600 hover:text-gray-800">Third Link</a>
+                            <a href="{{ route('category', ['categories' => 3]) }}" class="text-gray-600 hover:text-gray-800">自然</a>
                           </li>
                           <li>
-                            <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                            <a href="{{ route('category', ['categories' => 4]) }}" class="text-gray-600 hover:text-gray-800">アート</a>
+                          </li>
+                          <li>
+                            <a href="{{ route('category', ['categories' => 5]) }}" class="text-gray-600 hover:text-gray-800">文化</a>
+                          </li>
+                          <li>
+                            <a href="{{ route('category', ['categories' => 6]) }}" class="text-gray-600 hover:text-gray-800">その他</a>
                           </li>
                         </nav>
                       </div>

@@ -30,13 +30,12 @@
  
 </p>
 
-##目次
+## 目次
 
 1. プロジェクトについて(#プロジェクトについて)
 2. 環境(#環境)
-3. ディレクトリ構成(#ディレクトリ構成)
+3. データ構成(#ディレクトリ構成)
 4. 開発環境構築(#開発環境構築)
-5. トラブルシューティング(#トラブルシューティング)
 
 <div align="right">
     <a href="https://readouble.com/laravel/"><span>Laravelの詳細 »</span></a>
@@ -48,16 +47,16 @@
 フランス旅行におけるクチコミサイト
 
 ## プロジェクト概要
-<p align="left">今回は世界の移動が活発になっている中で世界で一番訪れられているフランス雨におけるクチコミサイトをユーザーベースで開発した。</p>
+<p align="left">今回は世界の移動が活発になっている中で世界で一番訪れられているフランスにおけるクチコミサイトをユーザーベースで開発した。</p>
 
 ## 環境
 <p>言語・フレームワーク : バージョン PHP : 8.2.9 Laravel: 9 MariaDB : 10.5 JavaScript : 20.11.0</p>
 
-## ディレクトリ構成
+## データ構成
 
 <!-- Treeコマンドを使ってディレクトリ構成を記載 -->
 
-❯ tree ーL 2
+https://github.com/ukyo0724/frreview/assets/156438388/2bac565c-f7a1-40e1-b373-1c0e4c1d311e
 
 ## 開発環境構築
 
@@ -72,7 +71,7 @@ MYSQL_USER=dbuser
 
 
 
-## トラブルシューティング
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
