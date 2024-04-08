@@ -44,4 +44,9 @@
             </x-primary-button>
         </div>
     </form>
+    <div class="flex flex-row-reverse items-center mt-3">
+        <a href="{{ route('register') }}" class="ml-2 text-sm text-gray-600">
+        {{ __('アカウント作成') }}
+        </a>
+    </div>
 </x-guest-layout>
