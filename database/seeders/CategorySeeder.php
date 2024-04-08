@@ -22,5 +22,17 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             'name'=>'歴史'
             ]);
+        DB::table('categories')->insert([
+            'name'=>'自然'
+            ]);
+        DB::table('categories')->insert([
+            'name'=>'アート'
+            ]);
+        DB::table('categories')->insert([
+            'name'=>'文化'
+            ]);
+        DB::table('categories')->insert([
+            'name'=>'その他'
+            ]);
     }
 }

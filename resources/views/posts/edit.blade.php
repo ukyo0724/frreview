@@ -135,18 +135,18 @@
                         </div>
                     @endif
                 @endforeach
-                </div>
-                <div class="flex flex-col items-center justify-center max-auto">
-                    @if($post->images->count()>=1)
-                        <button type="button" onclick="imageDelete({{$post->id}})" class="inline-flex items-center gap-1.5 rounded-lg border border-red-500 bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300 mt-7" onclick="deletePost({{$post->id}})">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="h-4 w-4">
-                                <path fill="currentColor" d="M13.5 6.5V7h5v-.5a2.5 2.5 0 0 0-5 0Zm-2 .5v-.5a4.5 4.5 0 1 1 9 0V7H28a1 1 0 1 1 0 2h-1.508L24.6 25.568A5 5 0 0 1 19.63 30h-7.26a5 5 0 0 1-4.97-4.432L5.508 9H4a1 1 0 0 1 0-2h7.5Zm2.5 6.5a1 1 0 1 0-2 0v10a1 1 0 1 0 2 0v-10Zm5-1a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0v-10a1 1 0 0 0-1-1Z" />
-                            </svg>
-                            削除
-                        </button>
-                        <p class="mt-1 text-sm text-gray-500">写真をチェックしこのボタンを押すと写真を消去します。</p>
-                    @endif
-              </div>
+            </div>
+            <div class="flex flex-col items-center justify-center max-auto">
+                @if($post->images->count()>=1)
+                    <button type="button" onclick="imageDelete({{$post->id}})" class="inline-flex items-center gap-1.5 rounded-lg border border-red-500 bg-red-500 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-red-700 hover:bg-red-700 focus:ring focus:ring-red-200 disabled:cursor-not-allowed disabled:border-red-300 disabled:bg-red-300 mt-7" onclick="deletePost({{$post->id}})">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="h-4 w-4">
+                            <path fill="currentColor" d="M13.5 6.5V7h5v-.5a2.5 2.5 0 0 0-5 0Zm-2 .5v-.5a4.5 4.5 0 1 1 9 0V7H28a1 1 0 1 1 0 2h-1.508L24.6 25.568A5 5 0 0 1 19.63 30h-7.26a5 5 0 0 1-4.97-4.432L5.508 9H4a1 1 0 0 1 0-2h7.5Zm2.5 6.5a1 1 0 1 0-2 0v10a1 1 0 1 0 2 0v-10Zm5-1a1 1 0 0 0-1 1v10a1 1 0 1 0 2 0v-10a1 1 0 0 0-1-1Z" />
+                        </svg>
+                        削除
+                    </button>
+                    <p class="mt-1 text-sm text-gray-500">写真をチェックしこのボタンを押すと写真を消去します。</p>
+                @endif
+            </div>
         </form>
         <div class="footer mt-10 mb-64">
             <button type="button" onclick="location.href='{{ route('edit', ['post'=>$post->id])}}'" class="inline-flex items-center gap-1.5 rounded-lg border border-gray-700 bg-gray-700 px-5 py-2.5 text-center text-sm font-medium text-white shadow-sm transition-all hover:border-gray-900 hover:bg-gray-900 focus:ring focus:ring-gray-200 disabled:cursor-not-allowed disabled:border-gray-300 disabled:bg-gray-300">
@@ -154,7 +154,7 @@
             戻る
             </button>
         </div>
-       <script>
+        <script>
             let key = 0;
             let currentPreviews = []; // 既存のプレビュー要素を保持する配列
 
